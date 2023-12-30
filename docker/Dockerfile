@@ -4,9 +4,11 @@ RUN apt update && apt install -y s3fs && apt install -y python3-pip
 
 RUN pip install flask flask-restx
 
-RUN mkdir /mnt/s3
+ENV S3_BUCKET_DIR=/mnt/s3
 
-COPY ../src/.passwd-s3fs /root/.passwd-s3fs
+RUN mkdir ${S3_BUCKET_DIR}
+
+COPY ../docker/.passwd-s3fs /root/.passwd-s3fs
 RUN chmod 600 /root/.passwd-s3fs
 
 COPY ./src /app

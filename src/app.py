@@ -3,7 +3,7 @@ from flask_restx import Api, Resource, fields
 import os
 
 app = Flask(__name__)
-app.config["FILES_DIR"] = "/mnt/s3"
+app.config['FILES_DIR'] = os.environ.get('S3_BUCKET_DIR')
 
 api = Api(app)
 
@@ -30,4 +30,4 @@ api.add_resource(FileList, '/files')
 api.add_resource(FileContent, '/files/<filename>')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port='5000')

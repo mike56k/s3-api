@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 
 RUN apt update && apt install -y s3fs && apt install -y python3-pip
 
-RUN pip install flask
+RUN pip install flask flask-restx
 
 RUN mkdir /mnt/s3
 

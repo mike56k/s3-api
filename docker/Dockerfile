@@ -2,7 +2,13 @@ FROM ubuntu:20.04
 
 RUN apt update && apt install -y s3fs && apt install -y python3-pip
 
-RUN pip install flask flask-restx
+ARG S3_BUCKET_DIR
+ARG BUCKET_NAME
+ENV S3_BUCKET_DIR=$S3_BUCKET_DIR
+ENV BUCKET_NAME=$BUCKET_NAME
+
+COPY ../docker/requirements.txt .
+RUN pip install -r requirements.txt
 
 RUN mkdir ${S3_BUCKET_DIR}
 

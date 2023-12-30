@@ -1,0 +1,11 @@
+name: s3_api
+
+services:
+  s3-server:
+    privileged: true
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    restart: always
+    ports:
+      - '8000:8000'
